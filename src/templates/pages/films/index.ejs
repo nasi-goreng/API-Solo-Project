@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Ghibli API</title>
+    <style>
+      table {
+        border: '1';
+      }
+    </style>
+  </head>
+  <h1>Studio Ghibli Films</h1>
+  <table>
+    <thead>
+      <th scope="col">Title</th>
+      <th scope="col">Director</th>
+      <th scope="col">Producer</th>
+      <th scope="col">Release Date</th>
+      <th scope="col">Running Time</th>
+      <th scope="col">Rating</th>
+    </thead>
+    <tbody>
+      <% for (const film of allFilms) { %>
+        <tr>
+          <td><%= film.title %></td>
+          <td><%= film.director %></td>
+          <td><%= film.producer %></td>
+          <td><%= film.release_date %></td>
+          <td><%= film.running_time %></td>
+          <td><%= film.rt_score %></td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
