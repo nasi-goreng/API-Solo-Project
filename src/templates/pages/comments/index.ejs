@@ -10,6 +10,8 @@
     </style>
   </head>
   <h1><%= title.title %></h1>
+  <h4>Movie Summary</h4>
+  <p><%= description.description %></p>
   <form action="/comments/add" method="POST">
     <input type="hidden" id="userId" name="userId" value="<%= userId %>"/>
     <input type="hidden" id="filmId" name="filmId" value="<%= filmId %>"/>
@@ -29,10 +31,12 @@
         <!-- <td><%= comment.commentId %></td> -->
         <td><%= comment.username %></td>
         <td><%= comment.comment %></td>
-        <td><form action="/comments/delete?_method=DELETE %>" method="POST">
+        <td><% if (comment.userId === userId) { %>
+          <form action="/comments/delete?_method=DELETE %>" method="POST">
           <input type="hidden" id="commentId" name="commentId" value="<%= comment.commentId %>"/>
           <button type="submit">Delete</button>
-        </form> </td>
+          </form> 
+        <% } %></td>
       </tr>
       <% } %>
     </tbody>

@@ -11,8 +11,14 @@ module.exports = {
       .from("films")
       .where({ id: filmId })
       .first();
+    const description = await knex
+      .select("description")
+      .from("films")
+      .where({ id: filmId})
+      .first();
     const comments = await knex
       .select(
+        "users.id as userId",
         "films.id as filmId",
         "comments.id as commentId",
         "username",
@@ -26,6 +32,7 @@ module.exports = {
       .orderBy("commentId");
     return res.render("pages/comments/index", {
       title,
+      description,
       filmId,
       userId,
       comments,
