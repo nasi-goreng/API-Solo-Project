@@ -85,14 +85,14 @@ describe("Ghibli API Server", () => {
 
   describe("/comments?filmId=1&userId=3", () => {
     it("should respond with status 200 ok", (done) => {
-      request.get("/watchlist/3").end((err, res) => {
+      request.get("/comments?filmId=1&userId=3").end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(res).to.have.status(200);
         done();
       });
     });
     it("should return an object", (done) => {
-      request.get("/watchlist/3").end((err, res) => {
+      request.get("/comments?filmId=1&userId=3").end((err, res) => {
         chai.expect(err).to.be.null;
         chai.expect(typeof res).to.eq('object');
         done();

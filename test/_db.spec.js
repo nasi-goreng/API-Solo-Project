@@ -45,9 +45,17 @@ describe("Ghibli DB", () => {
       expect(films).to.be.an.instanceof(Array);
     });
 
-    it("should accept a limit argument", async () => {
-      const customers = await customerModel.getAll(3);
-      expect(customers.length).to.be.at.most(3);
+    it("should return 22 films", async () => {
+      const films = await knex.select().from('films');
+      expect(films.length).to.eql(22);
     });
+  });
+
+  describe("watch table", () => {
+    it("should have 22 films for each user", async () => {
+      const films = await knex.select().from('watched').where({id: 7});
+      expect(films.length).to.eql(22);
+    });
+
   });
 });

@@ -3,6 +3,7 @@ const methodOverride = require("method-override");
 
 module.exports = {
   async renderComments(req, res) {
+    // vivaldi renders twice (probably for fabicon)
     const filmId = parseInt(req.query.filmId);
     const userId = parseInt(req.query.userId);
     const title = await knex
