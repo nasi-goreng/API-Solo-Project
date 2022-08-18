@@ -12,10 +12,11 @@
       }
     </style>
   </head>
-  <h1>Studio Ghibli Films</h1>
-  <form action="/watchlist/update" method="POST">
+  <h1>My Watch List</h1>
+  <form action="/watchlist/update?_method=PATCH" method="POST">
+    <input type="hidden" id="userId" name="userId" value="<%= id %>"/>
     <div class="form-field">
-      <input id="id" name="id" type="number" />
+      <input id="filmId" name="filmId" type="number"/>
       <button type="submit">Watched!</button>
     </div>
   </form>

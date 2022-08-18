@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Ghibli API</title>
+    <style>
+      table {
+        border: "1";
+      }
+    </style>
+  </head>
+  <h1><%= title.title %></h1>
+  <form action="/comments/add" method="POST">
+    <input type="hidden" id="userId" name="userId" value="<%= userId %>"/>
+    <input type="hidden" id="filmId" name="filmId" value="<%= filmId %>"/>
+    <p><label for="comment">Your Comment:</label></p>
+    <textarea rows="5" cols="60" name="comment"></textarea>
+    <input type="submit" value="Add Comment">
+  </form>
+  <table>
+    <thead>
+      <th scope="col">No.</th>
+      <th scope="col">Username</th>
+      <th scope="col">Comment</th>
+    </thead>
+    <tbody>
+      <% for (const comment of comments) { %>
+      <tr>
+        <td><%= comment.commentId %></td>
+        <td><%= comment.username %></td>
+        <td><%= comment.comment %></td>
+        <td><a href="/comments/delete?_method=delete&id=comment.id">Delete</td>
+      </tr>
+      <% } %>
+    </tbody>
+  </table>
+  <button><a href="/">Back to Main</a></button>
+</html>
