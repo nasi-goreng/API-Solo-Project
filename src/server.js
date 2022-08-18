@@ -47,6 +47,7 @@ const setupServer = () => {
   app.get("/login", sessionController.loginRender);
   app.post("/login", sessionController.login);
 
+  // main page
   app.get("/", async (req, res) => {
     if (!req.session.username) {
       return res.redirect("/login");
@@ -67,6 +68,13 @@ const setupServer = () => {
   app.get("/watchlist/:id", watchlistController.showWatchList);
   app.patch("/watchlist/update", watchlistController.updateWatchList);
 
+  
+  // comments
+  app.get("/comments/", commentController.renderComments);
+  app.post("/comments/add", commentController.addComment);
+  app.delete("/comments/delete", commentController.deleteComment);
+  
+  // not used...
   app.get("/titles/", async (req, res) => {
     const allTitles = await knex.select("title").from("films");
     return res.render("pages/titles/index", {
@@ -90,11 +98,6 @@ const setupServer = () => {
       titlesOfDir,
     });
   });
-
-  // comments
-  app.get("/comments/", commentController.renderComments);
-  app.post("/comments/add", commentController.addComment);
-  app.delete("/commnets/delete", commentController.deleteComment);
 
   return app;
 };

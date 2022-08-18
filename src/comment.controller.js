@@ -1,4 +1,5 @@
 const knex = require("./knex");
+const methodOverride = require("method-override");
 
 module.exports = {
   async renderComments(req, res) {
@@ -22,7 +23,6 @@ module.exports = {
       .join("users", { "users.id": "comments.user_id" })
       .where({ film_id: filmId })
       .orderBy("commentId");
-    console.log(title);
     return res.render("pages/comments/index", {
       title,
       filmId,
@@ -45,7 +45,7 @@ module.exports = {
   },
 
   async deleteComment(req, res) {
-    const commentId = +req.body.id;
+    const commentId = +req.body.commentId;
     await knex("comments").where({ id: commentId }).del();
     return res.redirect("back");
   },

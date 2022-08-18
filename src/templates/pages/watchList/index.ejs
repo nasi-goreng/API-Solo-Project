@@ -12,9 +12,10 @@
       }
     </style>
   </head>
+  <button><a href="/">Back to Main</a></button>
   <h1>My Watch List</h1>
   <form action="/watchlist/update?_method=PATCH" method="POST">
-    <input type="hidden" id="userId" name="userId" value="<%= id %>"/>
+    <input type="hidden" id="userId" name="userId" value="<%= userId %>"/>
     <div class="form-field">
       <input id="filmId" name="filmId" type="number"/>
       <button type="submit">Watched!</button>

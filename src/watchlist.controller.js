@@ -1,15 +1,16 @@
 const knex = require("./knex");
+const methodOverride = require("method-override");
 
 module.exports = {
   async showWatchList(req, res) {
-    const id = parseInt(req.params.id);
+    const userId = parseInt(req.params.id);
     const watchedFilms = await knex
       .select("id", "title", "watched")
       .from("watched")
       .join("films", { "films.id": "watched.film_id" })
-      .where({ user_id: id });
+      .where({ user_id: userId });
     return res.render("pages/watchlist/index", {
-      id,
+      userId,
       watchedFilms,
     });
   },
