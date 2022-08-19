@@ -14,7 +14,7 @@ This was created during my time as a trainee at Code Chrysalis
   2. Install dependencies ```npm install```
   3. Create a file called ```.env.local``` and set the environment variables in this file to match your local database settings.
   4. Create the database: ```echo "CREATE DATABASE cc_store;" | psql```
-  5. Build the database with migrations: npm run migrate
+  5. Build the database with migrations: ```npm run migrate```
   6. Seed files **individually** ```knex seed:run --specific=filename.js```
   7. Run the server ```npm start```
   8. Open ```localhost:3000```
