@@ -4,9 +4,10 @@ This was created during my time as a trainee at Code Chrysalis
 ## About this app
   1. Displays all the Studio Ghibli movies and their info in the main page.
   2. Lets you create your own watch list of the movies by requiring username and password when logging in.
-  3. Displays comments on each movie made by other users.
-  4. Lets you post your comments and store them in the database. 
-  5. Lets you delete your comments from the database.
+  3. Displays movies by directors.
+  4. Displays comments on each movie made by other users.
+  5. Lets you post your comments and store them in the database. 
+  6. Lets you delete your comments from the database.
 
 ## Getting started
   1. Clone this repo.
