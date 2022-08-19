@@ -5,9 +5,11 @@
     <title>Ghibli API</title>
   </head>
   <body>
-    <h1><%= dirName[0].name %> as Director</h2>
+    <h1><%= dirName.name %> as Director</h1>
     <% titlesOfDir.forEach((title) => { %>
-      <div><%= title.title %></div>
+      <div><a href="/comments?filmId=<%= title.filmId %>&userId=<%= userId %>">
+        <%= title.title %>
+      </a></div>
     <% }); %>
   </body>
 </html>

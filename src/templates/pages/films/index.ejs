@@ -23,8 +23,12 @@
     <tbody>
       <% for (const film of allFilms) { %>
       <tr>
-        <td><a href="/comments?filmId=<%= film.id %>&userId=<%= user.id %>"><%= film.title %></a></td>
-        <td><%= film.director %></td>
+        <td><a href="/comments?filmId=<%= film.id %>&userId=<%= user.id %>">
+          <%= film.title %>
+        </a></td>
+        <td><a href="/directors?directorId=<%= film.director_id %>&userId=<%= user.id %>">
+          <%= film.director %>
+        </a></td>
         <td><%= film.producer %></td>
         <td><%= film.release_date %></td>
         <td><%= film.running_time %></td>

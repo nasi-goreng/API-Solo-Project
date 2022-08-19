@@ -57,7 +57,19 @@ const setupServer = () => {
       .from("users")
       .where({ username: req.session.username })
       .first();
-    const allFilms = await knex.select().from("films");
+    const allFilms = await knex
+      .select(
+        "films.id as id",
+        "title",
+        "director",
+        "producer",
+        "release_date",
+        "running_time",
+        "rt_score",
+        "director_id"
+      )
+      .from("films")
+      .join("films_directors", { "films.id": "films_directors.film_id" });
     return res.render("pages/films/index", {
       user,
       allFilms,
@@ -68,32 +80,34 @@ const setupServer = () => {
   app.get("/watchlist/:id", watchlistController.showWatchList);
   app.patch("/watchlist/update", watchlistController.updateWatchList);
 
-  
   // comments
   app.get("/comments/", commentController.renderComments);
   app.post("/comments/add", commentController.addComment);
   app.delete("/comments/delete", commentController.deleteComment);
-  
-  // not used...
+
+  // not in use...
   app.get("/titles/", async (req, res) => {
     const allTitles = await knex.select("title").from("films");
     return res.render("pages/titles/index", {
       allTitles,
     });
   });
-  app.get("/directors/:id", async (req, res) => {
-    const id = parseInt(req.params.id);
+  app.get("/directors/", async (req, res) => {
+    const directorId = parseInt(req.query.directorId);
+    const userId = parseInt(req.query.userId);
     const dirName = await knex
       .select("name")
       .from("directors")
-      .where({ id: id });
+      .where({ id: directorId })
+      .first();
     const titlesOfDir = await knex
-      .select("title")
+      .select("title", "films.id as filmId")
       .from("films_directors")
       .join("directors", { "directors.id": "films_directors.director_id" })
       .join("films", { "films.id": "films_directors.film_id" })
-      .where({ director_id: id });
+      .where({ director_id: directorId });
     return res.render("pages/directors/index", {
+      userId,
       dirName,
       titlesOfDir,
     });
