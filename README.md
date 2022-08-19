@@ -1,5 +1,5 @@
 # API-Solo-Project: Ghibli API
-This was created during my time as a student at Code Chrysalis
+This was created during my time as a trainee at Code Chrysalis
 
 ## About this app
   1. Displays all the Studio Ghibli movies and their info in the main page.
